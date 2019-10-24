@@ -8,8 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 //.................................................
+/*labRouter was added per lab 7 instructions*/
 var labRouter = require('./routes/lab');
-//var registerRouter = require('./routes/register');
 //.................................................
 
 var app = express();
