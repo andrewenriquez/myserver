@@ -12,6 +12,11 @@ var usersRouter = require('./routes/users');
 var labRouter = require('./routes/lab');
 //.................................................
 
+//---------------------------------------------------
+// Added for final project
+var potholesRouter = require('./routes/potholes');
+//---------------------------------------------------
+
 var app = express();
 
 // view engine setup
@@ -51,6 +56,9 @@ app.use('/users', usersRouter);
 //app.use('/lab/register', registerRouter);
 //
 app.use('/lab',labRouter);
+
+app.use('/potholes', potholesRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
