@@ -105,7 +105,7 @@ router.post("/hit", function(req, res) {
              if (pothole) {
                  pothole.totalHits++;
                  pothole.lastReported = Date.now();
-                 responseJson.message = "Pothole hit recorded.";
+                 responseJson.message = "location data updated successfully.";
                  responseJson.totalHits = pothole.totalHits;
              }
              // New pothole found
@@ -118,7 +118,7 @@ router.post("/hit", function(req, res) {
                      lastReported: Date.now(),
                      firstReported: Date.now(),
                  });
-                 responseJson.message = "New pothole recorded.";
+                 responseJson.message = "New location data recorded successfully.";
              }                
 
              // Save the pothole data. 
