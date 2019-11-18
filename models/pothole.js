@@ -4,6 +4,7 @@ var potholeSchema = new db.Schema({
     loc:           { type: [Number], index: '2dsphere'},
     totalHits:     Number,
     zip:           String,
+    uv:            String,
     lastReported:  { type: Date, default: Date.now },
     firstReported: { type: Date, default: Date.now }
 });

@@ -51,18 +51,23 @@ router.post("/hit", function(req, res) {
         return res.status(201).send(JSON.stringify(responseJson));
     }
     */
-    if( !req.body.hasOwnProperty("longitude") ) {
+    if( !req.body.hasOwnProperty("long") ) {
         responseJson.message = "Request missing longitude parameter.";
         return res.status(201).send(JSON.stringify(responseJson));
     }
     
-    if( !req.body.hasOwnProperty("latitude") ) {
+    if( !req.body.hasOwnProperty("lat") ) {
         responseJson.message = "Request missing latitude parameter.";
         return res.status(201).send(JSON.stringify(responseJson));
     }
     
-    if( !req.body.hasOwnProperty("time") ) {
-        responseJson.message = "Request missing time parameter.";
+    if( !req.body.hasOwnProperty("uv") ) {
+        responseJson.message = "Request missing uv parameter.";
+        return res.status(201).send(JSON.stringify(responseJson));
+    }
+
+    if( !req.body.hasOwnProperty("GPS") ) {
+        responseJson.message = "Request missing GPS parameter.";
         return res.status(201).send(JSON.stringify(responseJson));
     }
     
@@ -82,7 +87,7 @@ router.post("/hit", function(req, res) {
         let findPotholeQuery = Pothole.findOne({
              loc: {
                  $near : {
-                     $geometry: { type: "Point",  coordinates: [req.body.longitude, req.body.latitude] },
+                     $geometry: { type: "Point",  coordinates: [req.body.long, req.body.lat] },
                      $maxDistance: 10.0
                  }
              }
@@ -107,7 +112,8 @@ router.post("/hit", function(req, res) {
              else {
                  // Create a new pothole and save the pothole to the database
                  var pothole = new Pothole({
-                     loc: [req.body.longitude, req.body.latitude],
+                     loc: [req.body.long, req.body.lat],
+                     uv: req.body.uv,
                      totalHits: 1,
                      lastReported: Date.now(),
                      firstReported: Date.now(),
